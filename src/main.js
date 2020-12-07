@@ -2,8 +2,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastClick from 'fastclick' // 解决某些机型移动端300ms点击事件延迟问题
-import './assets/styles/reset.css' // 解决不同手机初始化样式统一问题
-import './assets/styles/border.css' // 解决多倍屏一像素边框问题
+import 'styles/reset.css' // 解决不同手机初始化样式统一问题
+import 'styles/border.css' // 解决多倍屏一像素边框问题
+import 'styles/iconfont.css' // iconfont图标库引入
 
 Vue.config.productionTip = false
 fastClick.attach(document.body)
