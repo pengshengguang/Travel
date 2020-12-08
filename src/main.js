@@ -5,9 +5,12 @@ import fastClick from 'fastclick' // 解决某些机型移动端300ms点击事�
 import 'styles/reset.css' // 解决不同手机初始化样式统一问题
 import 'styles/border.css' // 解决多倍屏一像素边框问题
 import 'styles/iconfont.css' // iconfont图标库引入
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 
 Vue.config.productionTip = false
 fastClick.attach(document.body)
+Vue.use(VueAwesomeSwiper /* { default options with global component } */)
 
 /* eslint-disable no-new */
 new Vue({
