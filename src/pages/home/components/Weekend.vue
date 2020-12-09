@@ -4,7 +4,7 @@
     <ul>
       <li
         class="item border-bottom"
-        v-for="item of recommendList"
+        v-for="item of list"
         :key="item.id"
       >
         <div class="item-img-wrapper">
@@ -22,24 +22,13 @@
 <script>
 export default {
   name: 'HomeWeekend',
+  props: {
+    list: {
+      type: Array
+    }
+  },
   data: function () {
     return {
-      recommendList: [{
-        id: '0001',
-        imgUrl: 'http://img1.qunarzz.com/sight/source/1505/11/248b40e34116fb.jpg_r_640x214_560e7d05.jpg',
-        title: '珠海打卡',
-        desc: '要休闲，要观光，统统满足你'
-      }, {
-        id: '0002',
-        imgUrl: 'http://img1.qunarzz.com/sight/source/1602/88/bf120edeaea383.jpg_r_640x214_f8591f7b.jpg',
-        title: '欢乐长隆',
-        desc: '世界欢乐汇聚长隆，这里拥有多个大型游乐设备和精彩的演出，和小伙伴们一起感受刺激的体验'
-      }, {
-        id: '0003',
-        imgUrl: 'http://img1.qunarzz.com/sight/source/1602/9c/39c5ce9ff58609.jpg_r_640x214_efb90102.jpg',
-        title: '粤西温泉',
-        desc: '自驾粤西，这里有最全最心仪的温泉池，环境优美，舒舒服服的泡个热汤，远离繁忙的工作'
-      }]
     }
   }
 }
@@ -48,7 +37,6 @@ export default {
 <style lang="stylus" scoped>
   @import "~styles/mixins.styl"
   .title
-    margin-top: .2rem
     line-height: .8rem
     background: #eee
     text-indent: .2rem

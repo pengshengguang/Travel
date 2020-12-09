@@ -1,0 +1,86 @@
+{
+  "ret": true,
+  "data": {
+    "city": "北京",
+    "swiperList": [{
+      "id": "0001",
+      "imgUrl": "http://imgs.qunarzz.com/vs_ceph_vcimg/b8c4527c41649814cc4cf86880abba54.jpeg"
+    }, {
+      "id": "0002",
+      "imgUrl": "http://imgs.qunarzz.com/vs_ceph_vcimg/569cae4ae98e9793f7341e85eed73c54.jpeg"
+    }],
+    "iconList": [{
+      "id": "0001",
+      "imgUrl": "//s.qunarzz.com/homenode/images/touchheader/hotel.png",
+      "desc": "酒店"
+    }, {
+      "id": "0002",
+      "imgUrl": "//s.qunarzz.com/homenode/images/touchheader/flight.png",
+      "desc": "机票"
+    }, {
+      "id": "0003",
+      "imgUrl": "//s.qunarzz.com/homenode/images/touchheader/train.png",
+      "desc": "火车票"
+    }, {
+      "id": "0004",
+      "imgUrl": "//s.qunarzz.com/homenode/images/touchheader/package.png",
+      "desc": "度假"
+    }, {
+      "id": "0005",
+      "imgUrl": "//s.qunarzz.com/homenode/images/touchheader/piao.png",
+      "desc": "景点门票"
+    }, {
+      "id": "0006",
+      "imgUrl": "//s.qunarzz.com/homenode/images/touchheader/hotel.png",
+      "desc": "酒店"
+    }, {
+      "id": "0007",
+      "imgUrl": "//s.qunarzz.com/homenode/images/touchheader/flight.png",
+      "desc": "机票"
+    }, {
+      "id": "0008",
+      "imgUrl": "//s.qunarzz.com/homenode/images/touchheader/train.png",
+      "desc": "火车票"
+    }, {
+      "id": "0009",
+      "imgUrl": "//s.qunarzz.com/homenode/images/touchheader/package.png",
+      "desc": "度假"
+    }, {
+      "id": "00010",
+      "imgUrl": "//s.qunarzz.com/homenode/images/touchheader/piao.png",
+      "desc": "景点门票"
+    }],
+    "recommendList": [{
+      "id": "0001",
+      "imgUrl": "https://imgs.qunarzz.com/p/tts6/2011/be/647cdfb55463f802.jpg_160x160_baa2ed79.jpg",
+      "title": "珠海一日游",
+      "desc": "珠海一日游 船游澳门+港珠澳大桥 早上/中午出发 含接送纯玩"
+    }, {
+      "id": "0002",
+      "imgUrl": "https://imgs.qunarzz.com/p/tts5/2001/85/aa3944b7ebb37102.jpg_160x160_e7696bb3.jpg",
+      "title": "【去哪儿获奖线路】",
+      "desc": "【去哪儿获奖线路】港珠澳大桥+珠海渔女+日月贝剧院+餐1日游"
+    }, {
+      "id": "0003",
+      "imgUrl": "https://imgs.qunarzz.com/p/tts4/2005/4a/560af3958b7bfc02.jpg_160x160_e385dad8.jpg",
+      "title": "港珠澳大桥+珠海观光1日游",
+      "desc": "【珠海出发+免费上门接】港珠澳大桥+珠海观光1日游"
+    }],
+    "weekendList": [{
+      "id": "0001",
+      "imgUrl": "http://img1.qunarzz.com/sight/source/1505/11/248b40e34116fb.jpg_r_640x214_560e7d05.jpg",
+      "title": "珠海打卡",
+      "desc": "要休闲，要观光，统统满足你"
+    }, {
+      "id": "0002",
+      "imgUrl": "http://img1.qunarzz.com/sight/source/1602/88/bf120edeaea383.jpg_r_640x214_f8591f7b.jpg",
+      "title": "欢乐长隆",
+      "desc": "世界欢乐汇聚长隆，这里拥有多个大型游乐设备和精彩的演出，和小伙伴们一起感受刺激的体验"
+    }, {
+      "id": "0003",
+      "imgUrl": "http://img1.qunarzz.com/sight/source/1602/9c/39c5ce9ff58609.jpg_r_640x214_efb90102.jpg",
+      "title": "粤西温泉",
+      "desc": "自驾粤西，这里有最全最心仪的温泉池，环境优美，舒舒服服的泡个热汤，远离繁忙的工作"
+    }]
+  }
+}

@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOptions">
+    <swiper :options="swiperOptions" v-if="showSwiper">
       <!--<swiper-slide>-->
         <!--<img class="swiper-img" src="http://imgs.qunarzz.com/vs_ceph_vcimg/b8c4527c41649814cc4cf86880abba54.jpeg" alt="">-->
       <!--</swiper-slide>-->
       <!--<swiper-slide>-->
         <!--<img class="swiper-img" src="http://imgs.qunarzz.com/vs_ceph_vcimg/569cae4ae98e9793f7341e85eed73c54.jpeg" alt="">-->
       <!--</swiper-slide>-->
-      <swiper-slide  v-for="item of swiperList" :key="item.id">
+      <swiper-slide  v-for="item of list" :key="item.id">
         <img class="swiper-img" :src="item.imgUrl"/>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -18,19 +18,24 @@
 <script>
 export default {
   name: 'HomeSwiper',
+  props: {
+    list: {
+      type: Array
+    }
+  },
   data: function () {
     return {
       swiperOptions: {
         pagination: '.swiper-pagination', // 这个配置可以显示轮播图的轮播点
+        autoplay: true, // 轮播图来回滚动
+        speed: 5000,
         loop: true
-      },
-      swiperList: [{
-        id: '0001',
-        imgUrl: 'http://imgs.qunarzz.com/vs_ceph_vcimg/b8c4527c41649814cc4cf86880abba54.jpeg'
-      }, {
-        id: '0002',
-        imgUrl: 'http://imgs.qunarzz.com/vs_ceph_vcimg/569cae4ae98e9793f7341e85eed73c54.jpeg'
-      }]
+      }
+    }
+  },
+  computed: {
+    showSwiper () { // 在dom模板里面尽量出现逻辑型代码，例如 v-if="list.length"
+      return this.list.length
     }
   }
 }

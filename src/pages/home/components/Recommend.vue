@@ -4,7 +4,7 @@
     <ul>
       <li
         class="item border-bottom"
-        v-for="item of recommendList"
+        v-for="item of list"
         :key="item.id"
       >
         <img class="item-img" :src="item.imgUrl">
@@ -21,24 +21,13 @@
 <script>
 export default {
   name: 'HomeRecommend',
+  props: {
+    list: {
+      type: Array
+    }
+  },
   data: function () {
     return {
-      recommendList: [{
-        id: '0001',
-        imgUrl: 'https://imgs.qunarzz.com/p/tts6/2011/be/647cdfb55463f802.jpg_160x160_baa2ed79.jpg',
-        title: '珠海一日游',
-        desc: '珠海一日游 船游澳门+港珠澳大桥 早上/中午出发 含接送纯玩'
-      }, {
-        id: '0002',
-        imgUrl: 'https://imgs.qunarzz.com/p/tts5/2001/85/aa3944b7ebb37102.jpg_160x160_e7696bb3.jpg',
-        title: '【去哪儿获奖线路】',
-        desc: '【去哪儿获奖线路】港珠澳大桥+珠海渔女+日月贝剧院+餐1日游'
-      }, {
-        id: '0003',
-        imgUrl: 'https://imgs.qunarzz.com/p/tts4/2005/4a/560af3958b7bfc02.jpg_160x160_e385dad8.jpg',
-        title: '港珠澳大桥+珠海观光1日游',
-        desc: '【珠海出发+免费上门接】港珠澳大桥+珠海观光1日游'
-      }]
     }
   }
 }
