@@ -8,7 +8,8 @@
       :letter="letter"
     ></city-list>
     <city-alphabet
-      :cities="cities">
+      :cities="cities"
+      @change="handleLetterChange">
     </city-alphabet>
   </div>
 </template>
@@ -46,6 +47,9 @@ export default {
         this.cities = data.cities
         this.hotCities = data.hotCities
       }
+    },
+    handleLetterChange (letter) {
+      this.letter = letter // 这里是Alphabet.vue 触发change传值过来的，这里的this.letter已经通过props传值给了List.vue(对应的watched里面做响应)
     }
   },
   mounted () {
