@@ -15,12 +15,11 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
   name: 'HomeHeader',
-  props: {
-    city: {
-      type: String
-    }
+  computed: {
+    ...mapState(['city']) // mapState的作用就是将state属性映射到这个组件的计算属性当中，...扩展运算符是es9的东西 （这样可以省去在dom中写 {{this.$store.state.city}}）
   }
 }
 </script>
@@ -50,7 +49,8 @@ export default {
       padding-left: .2rem
       color: #ccc
     .header-right
-      width: 1.24rem
+      min-width: 1.04rem /*这里如果用 width写死宽度，会导致城市名数字多而导致换行！！！！！*/
+      padding: 0 .1rem
       text-align: center
       color: #fff
       .arrow-icon

@@ -7,6 +7,7 @@ import 'styles/border.css' // 解决多倍屏一像素边框问题
 import 'styles/iconfont.css' // iconfont图标库引入
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+import store from './store' // 这里可以不写/index，让系统自己去找
 
 Vue.config.productionTip = false
 fastClick.attach(document.body)
@@ -16,6 +17,7 @@ Vue.use(VueAwesomeSwiper /* { default options with global component } */)
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App) // 这是vue2.0的语法，h是vue的函数，createElement
   // components: {App} 这是vue1.0的语法，作用是一样的，将App挂在到el上
   // template: '<App/>'
