@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .container >>> .swiper-container
+  .container >>> .swiper-container // 这里如果不这么设置，swiper.css会控制overflow：hidden，会导致轮播的指示栏下移了（bottom: -1rem），但是不显示
     overflow: inherit
   .container
     display: flex

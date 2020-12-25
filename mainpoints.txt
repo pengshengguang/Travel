@@ -1,0 +1,132 @@
+7-3 开发header组件(Swiper.vue)
+  1、轮播图使用vue-awsome-swiper
+  2、例如padding-bottom来进行占位与高度自适应，避免闪烁
+     https://blog.csdn.net/qq_37167086/article/details/103956359
+     https://www.cnblogs.com/zhansu/archive/2004/01/13/10314388.html（padding基于父元素的宽度的百分比的内边距）
+     https://www.cnblogs.com/lwlblog/p/12304879.html
+  2、在scoped的作用下穿透子组件控制样式
+  3、如何在git上新建一个分支写代码，然后再合并到main主分支上
+
+7-4 首页图标区域页面布局(icons.vue)
+  1、box-sizing: border-box 的作用
+     https://blog.csdn.net/lengyue1084/article/details/82191095
+  2、功能区域的图标布局挺有意思的，4 * 2的布局，然后图标+文字的上下部剧用到了绝对定位
+
+7-5 图标区域逻辑实现（icons.vue\mixins.styl）
+  1、使用vue-awsome-swiper来实现功能图片翻页功能
+  2、pages计算属性里面，有个一个算法，可以将一个数组分成多个数组
+  3、stylus提供一个mixins的语法，可以将CSS封装打包
+
+7-6 热销推荐区域的布局（Recommend.vue）
+  1、因为是列表，所以使用到了<ul> <li> 然后里面嵌套div，因为div是左右布局，所以用到了flex
+  2、父元素flex的子元素，且flex：1，没有设宽度，是个时候子元素的文本省略号效果ellipsis就没有了，必须要在flex:1 那里设置min-width: 0，才会有效果
+
+7-7 周末去哪儿区域布局（Weekend.vue）
+  1、是Recommend的微调而已，都差不多，上图片 下文字
+  2、此时不是flex布局，父元素不需要用到min-width: 0，文本省略号效果ellipsis依然有效（这个我还没弄清）
+
+7-8 axios
+  1、json等静态文件放在static目录下，原因是直接在网站上输入static的路径可以直接访问（http://localhost:8080/static/mock/city.json），除此之外，网页上面访问其他目录都会重定向到首页。
+  2、mock文件夹不希望提交到本地或者线上的仓库里，那么就可以在.gitignore文件里面定义就行了static/mock
+  3、vue提供了proxy代理功能，config/index.js，dev开发环境下的proxyTable配置一下就行
+
+7-9 父子组件传值
+  1、Swiper.vue里面有个bug，看页面刷新swiper总会显示最后一页，原因是一开始渲染swiper,传进来的list是空数组，就会导致这样的现象，那么怎么避免了，可以在组件那里dom，写v-if="data.length",意思是有数据才渲染轮播图！！！！
+  2、接着第一点说，我们要避免在dom里面写逻辑代码，例如v-if="data.length"，我们可以写在computed里面就行
+  3、icons.vue，轮播图片来回滚动，可禁止 autoplay: false // 禁止轮播图来回滚动
+
+8-1 城市选择页面路由配置（City.vue）
+  1、用<router-link to="/city"></router-link>包裹，就会变成一个a标签包裹dom元素，注意此时dom的层级变了，a标签在最外面，会导致一些样式会有问题，然后自己微调一下就行了
+  2、在vue中写css，不要加厂商前缀，vue-cli会在打包时自动生成
+  3、什么时候要加box-sizing: border-box，例如.search-input里面，宽度是100%，如果你加了padding: 0 .1rem，那么，你输入满格文字的时候，最右边是被挤出去的，没有看到pading-right: 0.rem的效果。（Searche.vue）
+     这个时候你加了box-sizing: border-box，那么就不会被挤出去了，而且能看到pading-right: 0.rem的效果。
+
+8-3 列表布局
+  1、塌陷现象，CSS外边距合并（视频没有讲，我自己学的）
+     1.1、在div里面，使用:before/after，在里面写border-color: #ccc，可为div增加前后1px边框
+     1.2、两个同级的div，A设置margin-bottom： 20px，B设置margin-top： 10px，那么两个上下叠加之后，外边距是等于10px
+     父子div，父div设置设置margin-top： 20px，子div设置margin-top： 10px，，那么子对于父的margin-top： 10px将没有效果（1.2的解决办法，在父div 设置内边距或边框把外边距分隔开！！！）
+     https://www.w3school.com.cn/css/css_margin_collapsing.asp
+     1.3、父div设置了padding，子div设置widtd: 33.33%，那么这个33.33%是相对于父的内容宽度（不包含padding的值）
+
+8-4 Better-scroll的使用及字母表布局（Alphabet.vue）
+    1、使用Better-scroll，就需要满足它官网上面给的dom结构要求
+    2、字母表使用了absolute + flex布局，复习一下
+
+8-5 城市页动态数据渲染
+    1、ajax可以写在created，但是作者建议最好写在mounted
+    2、天啊！！！灾难，再给List.vue中添加动态数据的时候，发现不能滚动了，再三查原因，甚至代码跟例子给的一模一样，还是不能滚动，后面才发现，可能是better-scroll的版本太高了才会出现这个种情况，最后我把better-scroll的版本调成和视频一样的版本，就可以正常滚动了（这里我颓废了大概一个星期）
+
+ 8-6 兄弟组件间联动
+    1、ref新增知识点，当你在一个v-for里面，动态绑定:ref="xxx"，那么你通过this.$refs[xxx]，获取到的是一个数组，你要拿到dom元素就必须this.$refs[xxx][0]
+    2、better-scroll的api，this.scroll.scrollToElement()，接受的参数是dom元素
+    3、@touchStart、@touchMove、@touchEnd的用法，其中@touchMove接手一个参数e,e.touches[0].clientY 代表手指触碰屏幕距离屏幕顶端的高度
+    4、性能提升一：因为@touchMove执行的频率非常高，如果有些变量相对来说是不变的，可以将一些变量放到updated钩子里面，例如A字母距离父元素顶部的高度。
+    5、性能提升二：因为@touchMove执行的频率非常高，我们可以使用函数节流的方式大大减少@touchMove执行的频率，做法是用一个timer，记录setTimeout，然后用clearTimeout来进行取消函数执行，以便进入下一个setTimeout定时器。（Alphabet.vue）
+
+8-7 列表切换性能优化
+    1、性能提升一：因为@touchMove执行的频率非常高，如果有些变量相对来说是不变的，可以将一些变量放到updated钩子里面，例如A字母距离父元素顶部的高度。
+    2、性能提升二：因为@touchMove执行的频率非常高，我们可以使用函数节流的方式大大减少@touchMove执行的频率，做法是用一个timer，记录setTimeout，然后用clearTimeout来进行取消函数执行，以便进入下一个setTimeout定时器。（Alphabet.vue）
+
+8-8 搜索功能的实现
+    1、better-scroll控制对应div，该div用position:absolute 定位，常见套路。温习一下
+
+8-9 使用Vuex实现数据共享
+    1、原因：有些页面是没有公用的父组件的，例如城市页和主页，无法使用$emit、prop这些进行数据的中转。那么有什么办法呢？之前的总线bus的方法，但是比较麻烦。所以vue官方推荐了一个数据框架vuex。因为vue主要承担识图层的主要内容，而涉及大量数据进行传递时，就需要数据框架vuex进行辅助
+    2、vue提供一个公共存储数据仓库，我们可以叫store，有三部分组成（state、actions、mutations）
+    3、state，如果想要拿到公用数据，直接调用state就行了
+    4、actions，异步操作、批量操作等复杂操作
+    5、mutations，放的是一个一个同步的对state的修改
+    6、一般来说，组件想要改state里面的数据，流程如下，component->actions->mutatios->state，但不是绝对的
+    7、简单的数据操作，可以流程如下，component->mutatios->state
+
+    8、为什么每一个组件都能用this.$store，那是因为在main.js创建根实例的时候，把store穿进去了。然后Vue根实例创建的store会派发都每一个子组件里面。
+    9、小知识，在main.js里面，import store from './store'，这样系统也能能找到store并导出的store。
+    10、router路由跳转分两种，一种是声明式导航（<router-view :to="..">）
+			      一种是编程式导航（this.$router.push('.....')）
+
+8-10 Vuex的高级使用及localStorage
+    1、localStorage，H5的api，浏览器缓存
+    2、在vuex的state里面，配合localStorage使用更佳，例如定位的城市
+    3、使用到localStorage时，注意要使用try catch，是为了防止用户浏览器设置了隐身模式或者关闭本地存储功能，直接写localStorage是会使得代码报错抛异常，所以只要用到localStorage，为了保守起见，都要try..catch
+
+    4、vuex，五大部分组成，state、actions、mutations、getters、modules，其中
+    5、getter：作用有点像vue里面的computer，当我们需要根据state里面的数据算出新的数据时，我们就可以使用getters的数据，这样避免了数据的冗余
+    6、 modules：用来解决复杂的业务场景时，例如后台数据管理，会有很多不同模块的业务数据进行存储，那么modules就可以对模块进行划分，从而更加容易维护
+    7、要会使用vuex提供的语法糖，mapState、mapMutations....,配合扩展运算符...使用，可以起到将vuex映射跟组件的作用，意思是如果你...mapState(['city'])，那么在dom里面，就不用{{this.$store.state.city}}这么麻烦了，直接{{this.city}};又例如...mapMutations(['changeCity'])，那么就不用this.$store.commit('changeCity', city)这么麻烦，直接this.changeCity(city)!!!!!!
+
+8-11 使用keep-alive优化网页性能
+    1、<keep-alive>
+         <router-view/>
+       </keep-alive>
+    形式如上所示，一般写在App.vue根路由里面
+    2、作用，当路由的内容加载一次之后，我路由的内容就放在内存当中，下一次再进同一个路由时，不需要重新渲染组件，只需要从内存里拿出来显示就行
+    3、伴随而来的副作用是，当再次显示此路由的时候，就不会执行该组件的生命周期钩子，除了activated这个钩子会被执行！！！
+    4、一般用activated这个生命周期钩子，来进行一些异步请求。比如，当你选择城市定位，系统就会返回首页显示该城市的相关信息，你就可以通过activated里面处理异步（根据城市获取信息） Home.vue
+
+9-1 详情页动态路由及banner布局
+    1、动态路由，即可以通过路由传参数，例如
+       配置 -》在router中的index.js配置路由 path: '/detail/:id', 这就是动态路由，意思是前面必须是/detail/，后面可带一参数，参数放到id变量里面
+       使用 -》在组件中，<router-link :to="'/detail/' + item.id">，即可，你在url上面也能看到此参数（Recommend.vue）
+    2、使用iconfont，当你从官网上面新增icon的时候，你要重新下载文件，替换字体文件，然后iconfont.css中需要替换base64那一段代码即可
+    3、如果你想要在<li>的上一层添加<router-link>，例如
+    <ul>
+      <router-link>
+        <li>
+    这样操作的话，router-link默认会变成<a>标签，导致li上面的字体颜色发生变化，这种方式不推荐，推荐如下方式
+    <ul>
+	    <router-link tag="li">
+	  这样的好处是，router-link就不会渲染成<a>标签，而是渲染成<li>标签 （Recommend.vue）
+
+9-2  公用图片画廊组件拆分
+     1、css部分，如果你一个div用了hidden，那么如果div里面的元素使用bottom来进行移出div，位置是移动了，但是却看不到，因为父设置了overflow: hidden，删除就没问题
+     2、props里面，default属性可以这样写
+     -> props: {
+          imgs: {
+            type: Array,
+            default () {
+              return []
+            }
+          }
+        }
+     3、使用swiper的时候得注意了，例如画廊Gallary.vue，如果你调用了此组件，并且对它通过v-show进行显示隐藏操作，会使得swiper计算宽度出现问题，导致轮播卡壳失效，解决的办法是在swiperOptions配置中，添加两个属性即可（observeParents、observer），意思是，swiper插件，只要监听到本元素或者父级元素发生了dom结构的变化，swiper会自动自我刷新一次，通过自我刷新就可以解决宽度自我计算问题
