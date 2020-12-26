@@ -138,3 +138,9 @@
      3、渐隐渐现的算法，用到了除法！！！！哈哈哈
      4、滚动事件绑定在activated中，因为用了keep-alive，所以只要页面被显示，都会触发activated（detail/components/Header.vue）
      5、重新复习 页面滚动的高度，document.documentElement.scrollTop
+
+9-4  对全局事件进行解绑
+     1、在detail/components/Header.vue中，我们使用activated钩子对window进行全局事件的scroll的绑定，有缺点，它会影响所有组件的，
+        因此我们需要在组件隐藏的时候/或者组件即将替换成新页面的时候进行对全局的scroll解绑（在deactivated钩子解绑即可）
+     2、deactivated钩子：在页面即将被隐藏或者页面即将替换成新页面的时候被执行
+        activated钩子：页面展示时，会执行此钩子
