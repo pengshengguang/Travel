@@ -130,3 +130,11 @@
           }
         }
      3、使用swiper的时候得注意了，例如画廊Gallary.vue，如果你调用了此组件，并且对它通过v-show进行显示隐藏操作，会使得swiper计算宽度出现问题，导致轮播卡壳失效，解决的办法是在swiperOptions配置中，添加两个属性即可（observeParents、observer），意思是，swiper插件，只要监听到本元素或者父级元素发生了dom结构的变化，swiper会自动自我刷新一次，通过自我刷新就可以解决宽度自我计算问题
+
+9-3  实现Header渐隐渐现效果
+     1、重新复习 Header用 display: flex 布局
+     2、重新复习 记住了，文字或者icon居中，只要父级Div写 line-height: .8rem
+                                                 text-align: center  这样就行了
+     3、渐隐渐现的算法，用到了除法！！！！哈哈哈
+     4、滚动事件绑定在activated中，因为用了keep-alive，所以只要页面被显示，都会触发activated（detail/components/Header.vue）
+     5、重新复习 页面滚动的高度，document.documentElement.scrollTop
