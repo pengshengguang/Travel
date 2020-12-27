@@ -35,7 +35,6 @@ export default {
   methods: {
     handleScroll () {
       const top = document.documentElement.scrollTop
-      console.log(top)
       if (top > 60) {
         let opacity = top / 140
         opacity = opacity > 1 ? 1 : opacity
@@ -46,12 +45,11 @@ export default {
       }
     }
   },
-  activated () {
-    debugger
+  mounted () {
     // activated 页面展示时，会执行此钩子
     window.addEventListener('scroll', this.handleScroll)
   },
-  deactivated () {
+  unmounted () {
     // scroll事件绑定了再全局windows对象当中，你在任何页面滚动都会触发滚动事件
     // 因此我们需要在本组件隐藏或者消失的时候，使用钩子函数进行界面scroll事件
     // deactivated 钩子，在页面即将被隐藏或者页面即将替换成新页面的时候被执行

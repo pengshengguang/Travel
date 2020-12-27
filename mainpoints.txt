@@ -144,6 +144,8 @@
         因此我们需要在组件隐藏的时候/或者组件即将替换成新页面的时候进行对全局的scroll解绑（在deactivated钩子解绑即可）
      2、deactivated钩子：在页面即将被隐藏或者页面即将替换成新页面的时候被执行
         activated钩子：页面展示时，会执行此钩子
+     3、注意，视频作者做错了一个点，视频没说。就是因为<keep-alive exclude="Detail">，Detail这个组件将不被缓存，
+        因此，在Detail组件里面，activated/deactivated 这两个钩子函数将不被执行啦！！！！！
 
 9-5  使用递归组件实现详情页列表（新知识，递归组件是比较复杂的一个点！！！！）
      1、组件当中的name属性，其实很大用处，就是为了我们使用递归组件的时候来使用
@@ -180,3 +182,31 @@
 9-7  在项目中加入基础动画
      1、在div前面加入<transition>包裹，vue会默认加入v-enter 。。。等等class
      2、动画组件化（common/fade/FadeAnimation.vue）
+
+10-1 Vue项目的接口联调
+     1、通过在config/index.js里面的dev环境的proxyTable里面的配置实现路由代理转发的功能，
+        所以实现前后端联调，而不再去使用fiddler、charles这样的抓包代理工具了，只需要使用proxyTable配置项即可
+
+10-2 Vue项目的真机测试
+     1、如果把localhost替换成ip，在网页上是访问不了的，为什么呢？
+       原因：是前端的项目是通过webpack-dev-server启动的，但是默认不支持通过ip的形式访问项目，因此我们要修改默认默认配置项
+            在package.json里，当我们每次npm run dev命令的时候，实际是运行webpack-dev-server --host 0.0.0.0 --inline --progress --config build/webpack.dev.conf.js这样的命令
+       做法：在package.json里，的dev配置项里面，添加 --host 0.0.0.0 即可
+     2、有一个bug，安卓好像没问题。就是在城市选择里面，拖动字母表，整个页面都会拖动
+       解决：只需要在Alphabet.vue，的@touchstart后面添加prevent，就可阻止默认事件
+            @touchstart.prevent="handleTouchStart"
+     3、通过ip端口访问vue项目，安卓手机可能会出现白屏的效果，可能是因为安卓手机浏览器不支持promise
+       解决：通过npm install babel-polyfill --save
+            然后再main.js添加一段代码，import ’babel-polyfill‘
+       原理：babel-polyfill这个第三方包会通过判断手机浏览器有没promise，会帮你自动添加es6特性
+
+     4、通过ip端口访问vue项目，安卓手机可能会出现白屏的效果，第二个原因可能是不是你代码的问题，是dev-server的问题
+       解决：通过npm run build，把vue项目打包，然后放到真正的后台服务器，去访问，白屏问题就解决了
+
+10-3 Vue项目打包上线
+     1、通过npm run build，对src的源代码进行打包编译，生成一个可被浏览器运行的代码（也是压缩后的代码），
+        然后将dist文件夹上面的文件放到后台服务器的根路径
+        最后通过ip访问根路径即可访问vue项目（浏览器直接输入 ip即可）
+     2、如果我们不想把项目放到服务器根目录，而想放到project文件夹上，例如（10.10.10.10/project），该怎么做？
+        首先打开config/index.js，找到build打包配置项，有个assetsPublicPath: '/project',这样设置即可
+        最后重新打包即可。

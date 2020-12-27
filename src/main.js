@@ -6,6 +6,7 @@ import 'styles/reset.css' // 解决不同手机初始化样式统一问题
 import 'styles/border.css' // 解决多倍屏一像素边框问题
 import 'styles/iconfont.css' // iconfont图标库引入
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'babel-polyfill'
 import 'swiper/dist/css/swiper.css'
 import store from './store' // 这里可以不写/index，让系统自己去找
 
