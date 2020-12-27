@@ -18,5 +18,8 @@ export default new Router({
     path: '/detail/:id', // 这就是动态路由，意思是前面必须是/detail/，后面可带一参数，参数放到id变量里面
     name: 'Detail',
     component: Detail
-  }]
+  }],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })

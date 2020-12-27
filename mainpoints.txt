@@ -148,3 +148,18 @@
 9-5  使用递归组件实现详情页列表（新知识，递归组件是比较复杂的一个点！！！！）
      1、组件当中的name属性，其实很大用处，就是为了我们使用递归组件的时候来使用
         因为假设一个组件需要使用自己的时候，我们就可以通过组件name自己的名字来使用自己（detail/components/List.vue）
+
+9-6  使用Ajax获取动态数据
+     1、在App.vue中，<keep-alive exclude="Detail"> 使用了exclude，作用是Detail这个组件不被缓存，也就是说每一次进入Detail，都得重新执行组件渲染
+     2、现在不被keep-alive缓存，有两种做法了：
+        -> <keep-alive exclude="Detail">
+        -> 使用activated() / deactivated钩子 (deetail/components/Header.vue)
+     3、滚动页面会影响每一个组件，使得滚动不能复位，vue-router提供了一个属性可以解决
+        scrollBehavior (to, from, savedPosition) {
+          return { x: 0, y: 0 }
+        }
+        （详情router/index.js）
+     4、组件中的name属性至少有三个用途
+        ->递归调用组件，在组件中调用组件，需要name才能知道组件标签
+        ->想对某个页面取消缓存的时候，<keep-alive exclude="Detail">
+        ->vue-tool,调试的时候显示的组件名称
