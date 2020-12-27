@@ -163,3 +163,20 @@
         ->递归调用组件，在组件中调用组件，需要name才能知道组件标签
         ->想对某个页面取消缓存的时候，<keep-alive exclude="Detail">
         ->vue-tool,调试的时候显示的组件名称
+     5、为动态路由赋值属性，两种写法
+        写法一
+        ->axios.get('/api/detail.json', {
+            params: {
+              id: this.$route.params.id
+             }
+          }).then.......
+        写法二
+        ->axios.get('/api/detail.json/' + this.$route.params.id).then......
+     6、获取动态路由的属性值
+        this.$route.params.xxx
+     7、注意，路由对象是$route
+                而不是$router
+
+9-7  在项目中加入基础动画
+     1、在div前面加入<transition>包裹，vue会默认加入v-enter 。。。等等class
+     2、动画组件化（common/fade/FadeAnimation.vue）
